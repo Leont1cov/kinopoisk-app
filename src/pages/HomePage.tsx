@@ -1,0 +1,1 @@
+export const HomePage = () => <div>Главная страница</div>

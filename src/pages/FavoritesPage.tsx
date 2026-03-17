@@ -1,0 +1,1 @@
+export const FavoritePage = () => <div>Избранное</div>

@@ -1,0 +1,1 @@
+export const ComparePage = () => <div>Сравнить</div>

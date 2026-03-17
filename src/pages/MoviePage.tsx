@@ -1,0 +1,1 @@
+export const MoviePage = () => <div>Страница с фильмами</div>
