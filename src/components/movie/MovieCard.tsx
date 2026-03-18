@@ -12,11 +12,11 @@ export const MovieCard = ({ movie }:MovieCardProps) => {
         if (rating > 5) return '#ff9800'
         return '#f44336'
     }
-    //TODO: проверить работоспособность заглушки у постера
+
     return (
 
         <Link to={`/movie/${movie.id}`} className={styles.card}>
-            <img src={movie.poster?.previewUrl || 'https://via.placeholder.com' }
+            <img src={movie.poster?.previewUrl}
                  alt={movie.name} className={styles.poster}/>
 
             <div className={styles.content}>
