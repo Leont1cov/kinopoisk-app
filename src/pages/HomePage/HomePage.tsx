@@ -3,6 +3,7 @@ import {useMovies} from "../../hooks/useMovies.ts";
 import {useInfiniteScroll} from "../../hooks/useInfiniteScroll.ts";
 import { MovieCard } from "../../components/movie/MovieCard.tsx";
 import styles from './HomePage.module.css';
+import {Loader} from "../../components/ui/Loader/Loader.tsx";
 
 export const HomePage = () => {
     const [page, setPage] = useState(1);
@@ -31,7 +32,7 @@ export const HomePage = () => {
 
             {/* Элемент-маяк. */}
             <div ref={scrollTriggerRef} className={styles.statusZone}>
-                {isLoading && <div className={styles.loader}>Загрузка...</div>}
+                {isLoading && <Loader/>}
                 {!hasMore && <div className={styles.endMessage}>Вы посмотрели все фильмы</div>}
                 {error && <div className={styles.error}>{error}</div>}
             </div>

@@ -17,16 +17,6 @@
     gap: 24px;
 }
 
-.loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-    color: #f5c518;
-    font-size: 1.5rem;
-}
-
-
 @media (max-width: 1200px) {
     .container {
         padding: 24px;
