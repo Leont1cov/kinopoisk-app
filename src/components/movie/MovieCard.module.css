@@ -72,3 +72,41 @@
     border-radius: 24px;
     backdrop-filter: blur(6px);
 }
+
+@media (max-width: 1024px) {
+    .card {
+        flex-direction: row;
+        height: 150px;
+        gap: 12px;
+    }
+
+    .poster {
+        width: 100px;
+        height: 100%;
+        aspect-ratio: auto;
+    }
+
+    .title {
+        word-break: break-word;
+    }
+
+    .content {
+        padding: 10px 3px 10px 0;
+        flex: 1;
+        justify-content: space-between;
+    }
+
+    .title {
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 10px;
+    }
+}
