@@ -3,7 +3,7 @@ import {HomePage} from "./pages/HomePage/HomePage.tsx";
 import {MoviePage} from "./pages/MoviePage.tsx";
 import {FavoritePage} from "./pages/FavoritesPage.tsx";
 import {ComparePage} from "./pages/ComparePage.tsx";
-import {Header} from "./components/layout/Header.tsx";
+import {Header} from "./components/layout/Header/Header.tsx";
 
 function App() {
     return (
