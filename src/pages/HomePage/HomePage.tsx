@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useMovies} from "../../hooks/useMovies.ts";
 import {useInfiniteScroll} from "../../hooks/useInfiniteScroll.ts";
-import { MovieCard } from "../../components/movie/MovieCard.tsx";
+import { MovieCard } from "../../components/movie/MovieCard/MovieCard.tsx";
 import styles from './HomePage.module.css';
 import {Loader} from "../../components/ui/Loader/Loader.tsx";
 

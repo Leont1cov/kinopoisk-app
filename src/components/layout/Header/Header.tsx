@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom"
 import styles from "./Header.module.css"
 
-export const Header = () => {
+interface HeaderProps {
+    onToggleFilters: () => void;
+}
+
+export const Header = ({ onToggleFilters }:HeaderProps) => {
     return (
         <header className={styles.header}>
             <div className={styles.leftSection}>
@@ -12,6 +16,7 @@ export const Header = () => {
                     <NavLink to="/favorites">Избранное</NavLink>
                     <NavLink to="/compare">Сравнение</NavLink>
                 </nav>
+                <button className={styles.filterButton} onClick={onToggleFilters}>Фильтры</button>
             </div>
 
             <div className={styles.searchContainer}>

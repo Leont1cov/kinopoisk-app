@@ -75,6 +75,36 @@
     color: var(--text-placeholder);
 }
 
+/* FILTER BUTTON */
+.filterButton {
+    padding: 8px 14px;
+
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition:
+            background 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.15s ease;
+}
+
+/* hover */
+.filterButton:hover {
+    background: var(--bg-secondary-hover);
+    border-color: var(--border-color-active);
+}
+
+/* active (нажатие) */
+.filterButton:active {
+    transform: scale(0.96);
+}
+
 @media (max-width: 1024px) {
     .header {
         padding: 14px 20px;
@@ -138,5 +168,14 @@
     .searchInput, .searchInput:focus {
         width: 100%;
         max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .filterButton {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        border-radius: 16px;
     }
 }
