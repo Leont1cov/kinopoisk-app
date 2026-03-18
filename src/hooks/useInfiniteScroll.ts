@@ -13,7 +13,6 @@ export const useInfiniteScroll = ({ isLoading, hasMore, onIntersect }:UseInfinit
         if (isLoading || !hasMore) return; // Не следим, если грузим или всё загрузили
 
         const observer = new IntersectionObserver((entries) => {
-
             if (entries[0].isIntersecting && !isLoading && hasMore) {
                 onIntersect();
             }
