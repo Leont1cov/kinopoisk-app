@@ -11,35 +11,27 @@ export const HomePage = () => {
     const { movies, isLoading, hasMore, error, loadMovies } = useMovies();
 
     const page = Number(searchParams.get('page')) || 1;
-    // Infinite Scroll
-    const scrollTriggerRef = useInfiniteScroll({
-        isLoading,
-        hasMore,
-        onIntersect: () => {
-            // Вместо setPage мы просто обновляем URL
-            const newParams = new URLSearchParams(searchParams);
-            newParams.set('page', (page + 1).toString());
-            // replace: true, чтобы не забивать историю браузера кнопке "Назад"
-            setSearchParams(newParams, { replace: true });
-        }
-    });
+    const currentGenre = searchParams.get('genres.name');
 
     useEffect(() => {
         loadMovies(page);
     }, [page, loadMovies]);
 
-    // Загрузка первой страницы
-    useEffect(() => {
-        loadMovies(1);
-    }, [loadMovies]);
-
-    useEffect(() => {
-        if (page > 1) loadMovies(page);
-    }, [page, loadMovies]);
+    const scrollTriggerRef = useInfiniteScroll({
+        isLoading,
+        hasMore,
+        onIntersect: () => {
+            const newParams = new URLSearchParams(searchParams);
+            newParams.set('page', (page + 1).toString());
+            setSearchParams(newParams, { replace: true });
+        }
+    });
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Популярные фильмы</h1>
+            <h2 className={styles.title}>
+                {currentGenre ? `Жанр: ${currentGenre}` : 'Популярные фильмы'}
+            </h2>
 
             <div className={styles.grid}>
                 {movies.map(movie => (
@@ -49,7 +41,9 @@ export const HomePage = () => {
 
             <div ref={scrollTriggerRef} className={styles.statusZone}>
                 {isLoading && <Loader />}
-                {!hasMore && !isLoading && <div>Вы посмотрели все фильмы</div>}
+                {!hasMore && !isLoading && movies.length > 0 && (
+                    <div>Вы посмотрели все фильмы</div>
+                )}
                 {error && <div>{error}</div>}
             </div>
         </div>
