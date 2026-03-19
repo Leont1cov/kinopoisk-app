@@ -8,34 +8,22 @@
     pointer-events: none;
     transition: opacity 0.25s ease;
 }
-
-.overlayOpen {
-    opacity: 1;
-    pointer-events: all;
-}
+.overlayOpen { opacity: 1; pointer-events: all; }
 
 .drawer {
     position: absolute;
     top: 80px;
     left: 50%;
     transform: translateX(-50%) translateY(-20px);
-
     width: 100%;
-    /*TODO: 1200 оставлять?*/
     max-width: 1200px;
-
     background: var(--bg-header);
     border: 1px solid var(--border-color);
     border-radius: 20px;
-
     box-shadow: var(--card-hover-shadow);
     backdrop-filter: blur(16px);
-
     opacity: 0;
-
-    transition:
-            transform 0.3s ease,
-            opacity 0.25s ease;
+    transition: transform 0.3s ease, opacity 0.25s ease;
 }
 
 .drawerOpen {
@@ -43,28 +31,21 @@
     opacity: 1;
 }
 
-.content {
-    padding: 24px 32px;
-}
+.content { padding: 24px 32px; }
 
-.content h3 {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 16px;
-}
-
-@media (max-width: 768px) {
+.content h3 { font-size: 16px; font-weight: 500; margin-bottom: 16px; }
+@media (max-width: 768px)
+{
     .drawer {
         top: 70px;
         border-radius: 16px;
     }
 
-    .content {
-        padding: 20px;
-    }
+    .content { padding: 20px; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px)
+{
     .drawer {
         top: auto;
         bottom: 0;
@@ -81,5 +62,123 @@
 
     .content {
         padding: 18px 16px;
+    }
+}
+
+/* HEADER ROW */
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* RESET BUTTON */
+.resetButton {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    cursor: pointer;
+
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.resetButton:hover {
+    color: var(--text-primary);
+    opacity: 0.8;
+}
+
+/* GRID */
+.filtersGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* FILTER GROUP */
+.filterGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filterGroup label {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* SELECT */
+.filterGroup select {
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+}
+
+/* RANGE */
+.rangeRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rangeRow span {
+    color: var(--text-secondary);
+}
+
+.rangeRow input {
+    width: 100%;
+    padding: 8px 10px;
+
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+}
+
+/* focus */
+.rangeRow input:focus,
+.filterGroup select:focus {
+    border-color: var(--border-color-active);
+}
+
+/* Chrome, Safari, Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.filterGroup option {
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .filtersGrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filtersGrid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .headerRow {
+        margin-bottom: 16px;
     }
 }

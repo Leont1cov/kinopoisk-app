@@ -1,6 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { movieService } from "../api/movieService.ts";
-import type { Movie } from "../types";
+import type { Movie } from "../types/types.ts";
 
 export const useMovies = () => {
     const [movies, setMovies] = useState<Movie[]>([]);
@@ -8,33 +8,44 @@ export const useMovies = () => {
     const [hasMore, setHasMore] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    const isFetching = useRef(false);
+
     const loadMovies = useCallback(async (currentPage: number) => {
-        if (isLoading) return;
-        if (currentPage > 1 && movies.length >= currentPage * 20) return
+        if (isFetching.current) return;
+
+        const controller = new AbortController();
 
         try {
+            isFetching.current = true;
             setIsLoading(true);
 
             const data = await movieService.getMovies(currentPage, 50);
 
-            if (data.docs.length === 0) {
+            if (!data.docs.length) {
                 setHasMore(false);
-            } else {
-                setMovies(prev => {
-                    const all = [...prev, ...data.docs]
-                    const uniqueMap = new Map(all.map(m => [m.id, m]))
-                    return Array.from(uniqueMap.values());
-                })
-                setHasMore(data.page < data.pages);
+                return;
             }
 
-        } catch (err) {
-            setError('Ошибка при загрузке данных');
+            setMovies(prev => {
+                const all = [...prev, ...data.docs];
+                const uniqueMap = new Map(all.map(m => [m.id, m]));
+                return Array.from(uniqueMap.values());
+            });
+
+            setHasMore(data.page < data.pages);
+
+        } catch (err: unknown) {
+            if (err instanceof Error) setError(err.message);
+            else setError('Ошибка при загрузке данных');
             setHasMore(false);
             console.error(err);
         } finally {
             setIsLoading(false);
+            isFetching.current = false;
         }
-    }, [isLoading, hasMore])
+
+        return () => controller.abort(); // прерываем при размонтировании
+    }, []);
+
     return { movies, isLoading, hasMore, error, loadMovies };
-}
+};
