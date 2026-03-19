@@ -1,0 +1,32 @@
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.resetButton {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.resetButton:hover {
+    color: var(--text-primary);
+    opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+    .headerRow {
+        margin-bottom: 16px;
+    }
+}
