@@ -7,6 +7,7 @@ export const movieService = {
         // Создаем объект параметров с явным указанием типов
         const params: Record<string, string | number | undefined> = {
             page,
+            keyword: filters['keyword'],
             order: 'NUM_VOTE',
             type: 'FILM'
         };
