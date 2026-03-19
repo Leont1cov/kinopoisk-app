@@ -5,7 +5,7 @@ import {MovieGenreList} from "./MovieGroup/MovieGenreList.tsx";
 import {MovieRating} from "./MovieGroup/MovieRating.tsx";
 import {MovieYear} from "./MovieGroup/MovieYear.tsx";
 import {useSearchParams} from "react-router-dom";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 interface MovieFiltersProps {
     isOpen: boolean;
@@ -15,6 +15,17 @@ interface MovieFiltersProps {
 export const MovieFilters = ({ isOpen, onClose }: MovieFiltersProps) => {
     const [, setSearchParams] = useSearchParams();
     const [resetKey, setResetKey] = useState(0);
+
+    useEffect(() => {
+        if (isOpen) {
+            const originalStyle = window.getComputedStyle(document.body).overflow;
+            document.body.style.overflow = 'hidden';
+
+            return () => {
+                document.body.style.overflow = originalStyle;
+            };
+        }
+    }, [isOpen]);
 
     const handleReset = () => {
         setSearchParams({});
