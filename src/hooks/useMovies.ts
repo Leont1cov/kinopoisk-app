@@ -20,12 +20,9 @@ export const useMovies = () => {
             isFetching.current = true;
             setIsLoading(true);
 
-            // Превращаем URL в объект фильтров
-
             const filters = Object.fromEntries(searchParams.entries());
             const data = await movieService.getMovies(currentPage, filters);
 
-            // ... логика склейки movies ...
             setMovies(prev => {
                 if (currentPage === 1) return data.docs;
                 const all = [...prev, ...data.docs];
@@ -42,7 +39,7 @@ export const useMovies = () => {
             setIsLoading(false);
             isFetching.current = false;
         }
-    }, [searchParams.toString()]); // Следим за изменением URL!
+    }, [searchParams.toString()]);
 
     return { movies, isLoading, hasMore, error, loadMovies };
 };
