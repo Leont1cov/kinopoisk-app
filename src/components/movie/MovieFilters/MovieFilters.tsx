@@ -4,6 +4,8 @@ import {MovieFilterGroup} from "./MovieFilterGroup/MovieFilterGroup.tsx";
 import {MovieGenreList} from "./MovieGroup/MovieGenreList.tsx";
 import {MovieRating} from "./MovieGroup/MovieRating.tsx";
 import {MovieYear} from "./MovieGroup/MovieYear.tsx";
+import {useSearchParams} from "react-router-dom";
+import {useState} from "react";
 
 interface MovieFiltersProps {
     isOpen: boolean;
@@ -11,6 +13,14 @@ interface MovieFiltersProps {
 }
 
 export const MovieFilters = ({ isOpen, onClose }: MovieFiltersProps) => {
+    const [, setSearchParams] = useSearchParams();
+    const [resetKey, setResetKey] = useState(0);
+
+    const handleReset = () => {
+        setSearchParams({});
+        setResetKey(prev => prev + 1);
+    };
+
     return (
         <div
             className={`${styles.overlay} ${isOpen ? styles.overlayOpen : ''}`}
@@ -19,9 +29,14 @@ export const MovieFilters = ({ isOpen, onClose }: MovieFiltersProps) => {
             <div
                 className={`${styles.drawer} ${isOpen ? styles.drawerOpen : ''}`}
                 onClick={(e) => e.stopPropagation()}
+                key={resetKey}
             >
                     <div className={styles.content}>
-                        <MovieHeaderRow title="Фильтры" buttonText="Сбросить"/>
+                        <MovieHeaderRow
+                            title="Фильтры"
+                            buttonText="Сбросить"
+                            onReset={handleReset}
+                        />
                         <MovieFilterGroup
                             genres={<MovieGenreList/>}
                             rating={<MovieRating/>}

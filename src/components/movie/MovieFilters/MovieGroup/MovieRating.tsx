@@ -8,8 +8,8 @@ export const MovieRating = () => {
 
     const updateRating = (type: "from" | "to", value: string) => {
         const newParams = new URLSearchParams(searchParams);
-        let newFrom = type === "from" ? value : from;
-        let newTo = type === "to" ? value : to;
+        const newFrom = type === "from" ? value : from;
+        const newTo = type === "to" ? value : to;
 
         if (!newFrom && !newTo) {
             newParams.delete("rating.kp");
