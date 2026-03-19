@@ -1,20 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useMovies } from "../../hooks/useMovies.ts";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll.ts";
 import { MovieCard } from "../../components/movie/MovieCard/MovieCard.tsx";
 import styles from './HomePage.module.css';
 import { Loader } from "../../components/ui/Loader/Loader.tsx";
+import { useSearchParams } from "react-router-dom";
 
 export const HomePage = () => {
-    const [page, setPage] = useState(1);
+    const [searchParams, setSearchParams] = useSearchParams();
     const { movies, isLoading, hasMore, error, loadMovies } = useMovies();
 
+    const page = Number(searchParams.get('page')) || 1;
     // Infinite Scroll
     const scrollTriggerRef = useInfiniteScroll({
         isLoading,
         hasMore,
-        onIntersect: () => setPage(prev => prev + 1)
+        onIntersect: () => {
+            // Вместо setPage мы просто обновляем URL
+            const newParams = new URLSearchParams(searchParams);
+            newParams.set('page', (page + 1).toString());
+            // replace: true, чтобы не забивать историю браузера кнопке "Назад"
+            setSearchParams(newParams, { replace: true });
+        }
     });
+
+    useEffect(() => {
+        loadMovies(page);
+    }, [page, loadMovies]);
 
     // Загрузка первой страницы
     useEffect(() => {

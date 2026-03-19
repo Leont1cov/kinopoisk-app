@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef } from "react";
 import { movieService } from "../api/movieService.ts";
 import type { Movie } from "../types/types.ts";
+import { useSearchParams } from "react-router-dom";
 
 export const useMovies = () => {
     const [movies, setMovies] = useState<Movie[]>([]);
@@ -10,31 +11,29 @@ export const useMovies = () => {
 
     const isFetching = useRef(false);
 
+    const [searchParams] = useSearchParams();
+
     const loadMovies = useCallback(async (currentPage: number) => {
         if (isFetching.current) return;
-
-        const controller = new AbortController();
 
         try {
             isFetching.current = true;
             setIsLoading(true);
 
-            const data = await movieService.getMovies(currentPage, 50);
+            // Превращаем URL в объект фильтров
 
-            if (!data.docs.length) {
-                setHasMore(false);
-                return;
-            }
+            const filters = Object.fromEntries(searchParams.entries());
+            const data = await movieService.getMovies(currentPage, filters);
 
+            // ... логика склейки movies ...
             setMovies(prev => {
+                if (currentPage === 1) return data.docs;
                 const all = [...prev, ...data.docs];
                 const uniqueMap = new Map(all.map(m => [m.id, m]));
                 return Array.from(uniqueMap.values());
             });
-
             setHasMore(data.page < data.pages);
-
-        } catch (err: unknown) {
+        } catch (err) {
             if (err instanceof Error) setError(err.message);
             else setError('Ошибка при загрузке данных');
             setHasMore(false);
@@ -43,9 +42,7 @@ export const useMovies = () => {
             setIsLoading(false);
             isFetching.current = false;
         }
-
-        return () => controller.abort(); // прерываем при размонтировании
-    }, []);
+    }, [searchParams.toString()]); // Следим за изменением URL!
 
     return { movies, isLoading, hasMore, error, loadMovies };
 };
