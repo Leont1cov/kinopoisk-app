@@ -38,7 +38,7 @@ export const MoviePage = () => {
     return (
         <div className={styles.container}>
             <button onClick={() => navigate(-1)} className={styles.backButton}>
-                ← Назад
+                Назад
             </button>
 
             <div className={styles.content}>
