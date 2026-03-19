@@ -57,5 +57,9 @@ export const movieService = {
             page,
             pages: response.data.totalPages
         };
+    },
+    getMovieById: async (id: string) => {
+        const response = await api.get(`/films/${id}`);
+        return response.data;
     }
 };
