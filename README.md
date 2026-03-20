@@ -1,73 +1,68 @@
-# React + TypeScript + Vite
+# 🎬 Kinopoisk-App 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Как запустить проект
 
-Currently, two official plugins are available:
+### 1. Настройка API ключа
+Приложение работает на данных [Kinopoisk Unofficial API](https://kinopoiskapiunofficial.tech). Для корректной работы необходимо получить персональный ключ:
+1. Зарегистрируйтесь на сайте [kinopoiskapiunofficial.tech](https://kinopoiskapiunofficial.tech).
+2. Перейдите в свой профиль и скопируйте **API KEY**.
+3. В корне проекта найдите файл `.env.default`.
+4. Вставьте скопированный ключ в переменную `VITE_KP_API_KEY`.
+5. **Переименуйте** файл из `.env.default` в `.env` (удалите расширение `.default`).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 2. Установка и запуск
+Для управления зависимостями используется **Yarn**.
 
-## React Compiler
+```bash
+# Установка всех необходимых пакетов
+yarn install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Запуск приложения в режиме разработки
+yarn dev
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Создание оптимизированной сборки для продакшена
+yarn build
 ```
+## 🚀 Основной функционал
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Умный поиск и скролл**  
+  Мгновенный поиск фильмов и бесконечная лента (Infinite Scroll) на базе Intersection Observer. Реализована защита от дублирующих запросов (Race Conditions) через синхронную блокировку.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **URL**  
+  Все активные фильтры (жанры, рейтинг, годы) синхронизированы с адресной строкой через `searchParams`. Любым результатом поиска можно поделиться по прямой ссылке.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Избранное**  
+  Система сохранения фильмов в `localStorage`. Добавление реализовано через модальное окно подтверждения с использованием React Portals.
+
+- **Сравнение**  
+  Система сопоставления характеристик ровно двух фильмов. Реализована логика очереди FIFO (First-In-First-Out) — при выборе третьего фильма первый автоматически удаляется из списка.
+
+- **Адаптивная таблица**  
+  Сравнительная таблица c колонкой параметров для комфортного использования на мобильных устройствах.
+
+---
+
+## 🛠 Технический стек
+
+- **Core:** React 18, TypeScript 
+- **Build Tool:** Vite + Yarn
+- **Routing:** React Router v6
+- **State:** React Context API (синхронизация глобального состояния)
+- **Styles:** CSS Modules (полная изоляция стилей компонентов)
+- **Networking:** Axios + Custom Hooks
+
+---
+
+## 💡 Архитектурные решения
+
+- **Атомарная декомпозиция**  
+  Приложение разбито на мелкие, независимые компоненты. Сложные блоки (карточка фильма, модалка сравнения) разделены на логические подчасти для упрощения тестирования.
+
+- **Logic Decoupling**  
+  Вся бизнес-логика получения данных и управления состоянием вынесена в специализированные кастомные хуки (`useMovies`, `useMovieDetail`, `useCompare`).
+
+- **App Orchestration**  
+  Файл `App.tsx` максимально разгружен. Вся структура и логика UI вынесена в компонент `AppContent`, что обеспечивает корректный доступ к роутингу на всех уровнях.
+
+- **API Resilience**  
+  Использование Kinopoisk Unofficial API для стабильной работы сервиса и реализации расширенных возможностей фильтрации.
