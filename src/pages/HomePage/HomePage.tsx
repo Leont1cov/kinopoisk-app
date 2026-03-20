@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useMovies } from "../../hooks/useMovies.ts";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll.ts";
 import { MovieCard } from "../../components/movie/MovieCard/MovieCard.tsx";
@@ -7,45 +7,64 @@ import { Loader } from "../../components/ui/Loader/Loader.tsx";
 import { useSearchParams } from "react-router-dom";
 
 export const HomePage = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const { movies, isLoading, hasMore, error, loadMovies } = useMovies();
+    const [searchParams] = useSearchParams();
 
-    const page = Number(searchParams.get('page')) || 1;
-    const currentGenre = searchParams.get('genres.name');
+    // Создаем уникальную строку из всех фильтров (жанр, год, рейтинг)
+    const filtersKey = searchParams.toString();
+
+    return (
+        <div className={styles.container}>
+            <h1 className={styles.title}>Популярные фильмы</h1>
+
+            <MovieFeed key={filtersKey} />
+        </div>
+    );
+};
+
+// Внутренний компонент для самого списка
+const MovieFeed = () => {
+    const { movies, isLoading, hasMore, loadMovies } = useMovies();
+    const pageRef = useRef(1);
 
     useEffect(() => {
-        loadMovies(page);
-    }, [page, loadMovies]);
+        loadMovies(1);
+    }, [loadMovies]);
 
     const scrollTriggerRef = useInfiniteScroll({
         isLoading,
         hasMore,
         onIntersect: () => {
-            const newParams = new URLSearchParams(searchParams);
-            newParams.set('page', (page + 1).toString());
-            setSearchParams(newParams, { replace: true });
+            // Если идет загрузка, игнорируем событие
+            if (isLoading || !hasMore) return;
+
+            const nextPage = pageRef.current + 1;
+            pageRef.current = nextPage;
+            loadMovies(nextPage);
         }
     });
 
     return (
-        <div className={styles.container}>
-            <h2 className={styles.title}>
-                {currentGenre ? `Жанр: ${currentGenre}` : 'Популярные фильмы'}
-            </h2>
-
+        <>
             <div className={styles.grid}>
                 {movies.map(movie => (
                     <MovieCard key={movie.id} movie={movie} />
                 ))}
             </div>
 
-            <div ref={scrollTriggerRef} className={styles.statusZone}>
+            <div ref={scrollTriggerRef} className={styles.scrollArea}>
                 {isLoading && <Loader />}
-                {!hasMore && !isLoading && movies.length > 0 && (
-                    <div>Вы посмотрели все фильмы</div>
+
+                {!isLoading && !hasMore && movies.length > 0 && (
+                    <div className={styles.endBlock}>
+                        <p className={styles.endBlockTitle}>
+                            Вы посмотрели все доступные фильмы
+                        </p>
+                        <span className={styles.endBlockSubtext}>
+                            Всего загружено: {movies.length}
+                        </span>
+                    </div>
                 )}
-                {error && <div>{error}</div>}
             </div>
-        </div>
+        </>
     );
 };

@@ -4,6 +4,7 @@
     --bg-header: rgba(20, 20, 20, 0.7);
     --bg-secondary: rgba(255, 255, 255, 0.05);
     --bg-secondary-hover: rgba(255, 255, 255, 0.08);
+    --bg-blur: rgba(255, 255, 255, 0.06);
 
     /*TEXT*/
     --text-primary: #ffffff;
