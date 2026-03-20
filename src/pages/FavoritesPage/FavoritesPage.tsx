@@ -1,4 +1,4 @@
-import { useFavorites } from "../../context/FavoritesContext.tsx";
+import { useFavorites} from "../../hooks/useFavorites.ts";
 import { MovieCard} from "../../components/movie/MovieCard/MovieCard.tsx";
 import styles from "../HomePage/HomePage.module.css";
 import stylesFavoritePage from "./FavoritesPage.module.css"

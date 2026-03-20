@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./MovieCard.module.css";
 import type { Movie } from "../../../types/types.ts";
 import {FavoriteButton} from "../FavoiteButton/FavoriteButton.tsx";
-import {useFavorites} from "../../../context/FavoritesContext.tsx";
+import {useFavorites} from "../../../hooks/useFavorites.ts";
 
 interface MovieCardProps {
     movie: Movie;
