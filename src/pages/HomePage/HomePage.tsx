@@ -9,12 +9,20 @@ import { useSearchParams } from "react-router-dom";
 export const HomePage = () => {
     const [searchParams] = useSearchParams();
 
+    const currentGenre = searchParams.get('genres.name');
+    const searchQuery = searchParams.get('keyword');
     // Создаем уникальную строку из всех фильтров (жанр, год, рейтинг)
     const filtersKey = searchParams.toString();
 
+    const getTitle = () => {
+        if (searchQuery) return `Поиск: ${searchQuery}`;
+        if (currentGenre) return `Жанр: ${currentGenre}`;
+        return 'Популярные фильмы';
+    };
+
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Популярные фильмы</h1>
+            <h1 className={styles.title}>{getTitle()}</h1>
 
             <MovieFeed key={filtersKey} />
         </div>
