@@ -9,33 +9,9 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.cardFavorite {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 10;
-
-    /* Скрываем по умолчанию (для десктопа) */
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
 .card:hover {
     transform: translateY(-4px);
     box-shadow: var(--card-hover-shadow);
-}
-
-.poster {
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.card:hover .poster {
-    transform: scale(1.03);
 }
 
 .content {
@@ -57,43 +33,30 @@
     overflow: hidden;
 }
 
-.footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 12px;
-}
+.cardFavorite {
+    position: absolute;
+    z-index: 20;
+    top: 12px;
+    right: 12px;
 
-.year {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-}
-
-.rating {
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 4px 10px;
-    border-radius: 24px;
-    backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9);
+    transition: all 0.2s ease;
 }
 
 @media (hover: hover) {
     .card:hover .cardFavorite {
         opacity: 1;
-        transform: scale(1);
-    }
-
-    .cardFavorite.active {
-        opacity: 1;
+        visibility: visible;
         transform: scale(1);
     }
 }
 
-@media (hover: none) {
-    .cardFavorite {
-        opacity: 1;
-        transform: scale(1);
-    }
+:global(.active).cardFavorite {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: scale(1) !important;
 }
 
 @media (max-width: 1024px) {
@@ -103,28 +66,23 @@
         gap: 12px;
     }
 
-    .poster {
-        width: 100px;
-        height: 100%;
-        aspect-ratio: auto;
-    }
-
-    .title {
-        word-break: break-word;
-    }
-
     .content {
-        padding: 10px 3px 10px 0;
+        padding: 10px 10px 10px 0;
         flex: 1;
-        justify-content: space-between;
     }
 
     .title {
         font-size: 0.9rem;
+        word-break: break-word;
     }
 
-    .footer {
-        margin-top: 0;
+    .cardFavorite {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        top: 10px;
+        right: 10px;
+        left: auto;
     }
 }
 
@@ -132,5 +90,10 @@
     .content {
         padding: 10px;
     }
-}
 
+    .cardFavorite {
+        top: 8px;
+        right: 8px;
+        transform: scale(0.9); /* Чуть меньше, чтобы не мешать тексту */
+    }
+}

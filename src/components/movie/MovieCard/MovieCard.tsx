@@ -1,64 +1,39 @@
 import { Link } from "react-router-dom";
 import styles from "./MovieCard.module.css";
 import type { Movie } from "../../../types/types.ts";
-import {FavoriteButton} from "../FavoiteButton/FavoriteButton.tsx";
 import {useFavorites} from "../../../hooks/useFavorites.ts";
+import {MovieCardPoster} from "./components/MovieCardPoster/MovieCardPoster.tsx";
+import {MovieCardFooter} from "./components/MovieCardFooter/MovieCardFooter.tsx";
+import {MovieCardInfo} from "./components/MovieCardInfo/MovieCardInfo.tsx";
+import {FavoriteButton} from "../FavoiteButton/FavoriteButton.tsx";
 
 interface MovieCardProps {
     movie: Movie;
 }
 
 export const MovieCard = ({ movie }: MovieCardProps) => {
-    const getRatingColor = (rating: number | null) => {
-        if (!rating) return '#9e9e9e';
-        if (rating > 7) return '#4caf50';
-        if (rating > 5) return '#ff9800';
-        return '#f44336';
-    };
-
     const { isFavorite } = useFavorites();
     const active = isFavorite(movie.id);
 
     return (
-        <Link to={`/movie/${movie.id}`} className={styles.card}>
+        /* Добавляем обычный класс 'card' для работы :global(.card) в дочерних стилях */
+        <Link to={`/movie/${movie.id}`} className={`${styles.card} card`}>
             <FavoriteButton
                 movie={movie}
                 className={`
-                ${styles.cardFavorite} 
-                ${active ? styles.active : ''} 
-            `}
+                    ${styles.cardFavorite} 
+                    ${active ? 'active' : ''} 
+                `}
             />
 
-            <img
-                src={movie.poster.url}
-                alt={movie.name}
-                className={styles.poster}
-                loading="lazy"
-            />
+            <MovieCardPoster movie={movie} />
 
-            <div className={styles.content}>
-                <h3 className={styles.title} title={movie.name}>
-                    {movie.name}
-                </h3>
-
-                <div className={styles.footer}>
-                    <span className={styles.year}>
-                        {movie.year ?? '—'}
-                    </span>
-
-                    <span
-                        className={styles.rating}
-                        style={{
-                            backgroundColor: getRatingColor(movie.rating.kp) + '33',
-                            color: getRatingColor(movie.rating.kp),
-                        }}
-                    >
-                        {movie.rating.kp
-                            ? movie.rating.kp.toFixed(1)
-                            : 'N/A'}
-                    </span>
-                </div>
-            </div>
+            <MovieCardInfo title={movie.name}>
+                <MovieCardFooter
+                    year={movie.year}
+                    rating={movie.rating.kp}
+                />
+            </MovieCardInfo>
         </Link>
     );
 };

@@ -1,6 +1,6 @@
 import { useCompare } from "../../../hooks/useCompare";
 import { useState } from "react";
-import { CompareModal } from "../CompareModal/CompareModal"; // Создадим следующим шагом
+import { CompareModal } from "../CompareModal/CompareModal";
 import styles from "./CompareBar.module.css";
 
 export const CompareBar = () => {

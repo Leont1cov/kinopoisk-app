@@ -1,0 +1,25 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.year {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.rating {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 24px;
+    backdrop-filter: blur(6px);
+}
+
+@media (max-width: 1024px) {
+    .footer {
+        margin-top: 0;
+    }
+}
