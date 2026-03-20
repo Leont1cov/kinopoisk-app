@@ -54,6 +54,7 @@ export const MoviePage = () => {
                         year={movie.year}
                         genres={movie.genres}
                         description={movie.description}
+                        movie={movie}
                     />
                 }
             />

@@ -36,7 +36,6 @@ export const Header = ({ onToggleFilters }:HeaderProps) => {
                 <nav className={styles.nav}>
                     <NavLink to="/">Главная</NavLink>
                     <NavLink to="/favorites">Избранное</NavLink>
-                    <NavLink to="/compare">Сравнение</NavLink>
                 </nav>
                 <button className={styles.filterButton} onClick={onToggleFilters}>Фильтры</button>
             </div>

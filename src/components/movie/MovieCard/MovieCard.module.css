@@ -83,8 +83,6 @@
         transform: scale(1);
     }
 
-    /* Если фильм УЖЕ в избранном, показываем кнопку всегда */
-    /* (Нужно будет добавить класс .active в JSX ниже) */
     .cardFavorite.active {
         opacity: 1;
         transform: scale(1);

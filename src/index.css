@@ -27,6 +27,10 @@
     --rating-green: #4caf50;
     --rating-orange: #ff9800;
     --rating-red: #f44336;
+
+    /* ACCENTS */
+    --accent-blue: #3b82f6;
+    --accent-blue-soft: rgba(59, 130, 246, 0.1);
 }
 
 * {
