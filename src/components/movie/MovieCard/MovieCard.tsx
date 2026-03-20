@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./MovieCard.module.css";
 import type { Movie } from "../../../types/types.ts";
+import {FavoriteButton} from "../FavoiteButton/FavoriteButton.tsx";
+import {useFavorites} from "../../../context/FavoritesContext.tsx";
 
 interface MovieCardProps {
     movie: Movie;
@@ -14,8 +16,19 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
         return '#f44336';
     };
 
+    const { isFavorite } = useFavorites();
+    const active = isFavorite(movie.id);
+
     return (
         <Link to={`/movie/${movie.id}`} className={styles.card}>
+            <FavoriteButton
+                movie={movie}
+                className={`
+                ${styles.cardFavorite} 
+                ${active ? styles.active : ''} 
+            `}
+            />
+
             <img
                 src={movie.poster.url}
                 alt={movie.name}

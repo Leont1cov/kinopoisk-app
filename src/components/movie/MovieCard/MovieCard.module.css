@@ -1,25 +1,29 @@
 .card {
-    background: var(--card-bg);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--card-border);
-    text-decoration: none;
-
+    position: relative;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    text-decoration: none;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    cursor: pointer;
-    transition:
-            transform 0.25s ease,
-            box-shadow 0.25s ease,
-            border-color 0.25s ease;
+.cardFavorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+
+    /* Скрываем по умолчанию (для десктопа) */
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-6px) scale(1.01);
+    transform: translateY(-4px);
     box-shadow: var(--card-hover-shadow);
-    border-color: var(--card-border-hover);
 }
 
 .poster {
@@ -73,6 +77,27 @@
     backdrop-filter: blur(6px);
 }
 
+@media (hover: hover) {
+    .card:hover .cardFavorite {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Если фильм УЖЕ в избранном, показываем кнопку всегда */
+    /* (Нужно будет добавить класс .active в JSX ниже) */
+    .cardFavorite.active {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (hover: none) {
+    .cardFavorite {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 @media (max-width: 1024px) {
     .card {
         flex-direction: row;
@@ -110,3 +135,4 @@
         padding: 10px;
     }
 }
+
