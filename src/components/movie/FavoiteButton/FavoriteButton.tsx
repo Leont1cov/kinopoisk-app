@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useFavorites } from '../../../context/FavoritesContext';
+import { useFavorites} from "../../../hooks/useFavorites.ts";
 import type { Movie } from '../../../types/types';
 import styles from './FavoriteButton.module.css';
 import {Modal} from "../../ui/Modal/Modal.tsx";
