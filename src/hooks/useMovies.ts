@@ -7,39 +7,40 @@ export const useMovies = () => {
     const [movies, setMovies] = useState<Movie[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
-    const [error, setError] = useState<string | null>(null);
 
+    // СИНХРОННЫЙ ЗАМОК: он блокирует вызовы мгновенно
     const isFetching = useRef(false);
-
     const [searchParams] = useSearchParams();
 
-    const loadMovies = useCallback(async (currentPage: number) => {
-        if (isFetching.current) return;
+    const loadMovies = useCallback(async (pageToLoad: number) => {
+        // Проверяем замок ПЕРЕД всем остальным
+        if (isFetching.current || !hasMore) return;
 
         try {
             isFetching.current = true;
             setIsLoading(true);
 
             const filters = Object.fromEntries(searchParams.entries());
-            const data = await movieService.getMovies(currentPage, filters);
+            const data = await movieService.getMovies(pageToLoad, filters);
 
             setMovies(prev => {
-                if (currentPage === 1) return data.docs;
-                const all = [...prev, ...data.docs];
+                const newItems = data.docs || [];
+                if (pageToLoad === 1) return newItems;
+
+                const all = [...prev, ...newItems];
                 const uniqueMap = new Map(all.map(m => [m.id, m]));
                 return Array.from(uniqueMap.values());
             });
-            setHasMore(data.page < data.pages);
+
+            setHasMore(pageToLoad < data.pages);
         } catch (err) {
-            if (err instanceof Error) setError(err.message);
-            else setError('Ошибка при загрузке данных');
+            console.error('Ошибка в хуке:', err);
             setHasMore(false);
-            console.error(err);
         } finally {
             setIsLoading(false);
             isFetching.current = false;
         }
-    }, [searchParams.toString()]);
+    }, [searchParams.toString(), hasMore]);
 
-    return { movies, isLoading, hasMore, error, loadMovies };
+    return { movies, isLoading, hasMore, loadMovies };
 };

@@ -41,14 +41,12 @@ export const movieService = {
         // Выполняем запрос с указанием интерфейса ответа
         const response = await api.get<KPResponse>('/films', { params });
 
-        // Маппим данные в твой формат Movie без использования any
         const films: Movie[] = response.data.items.map((f): Movie => ({
             id: f.kinopoiskId,
             name: f.nameRu || f.nameOriginal || 'Без названия',
             poster: { url: f.posterUrlPreview },
             rating: { kp: f.ratingKinopoisk },
             year: f.year,
-            // Добавь остальные поля, если они есть в твоем типе Movie
             votes: { kp: 0 }
         }));
 
