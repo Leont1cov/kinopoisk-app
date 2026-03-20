@@ -7,26 +7,32 @@ import {ComparePage} from "./pages/ComparePage.tsx";
 import {Header} from "./components/layout/Header/Header.tsx";
 import {MovieFilters} from "./components/movie/MovieFilters/MovieFilters.tsx";
 import {FavoritesProvider} from "./context/FavoritesContext.tsx";
+import {CompareProvider} from "./context/CompareProvider.tsx";
+import {CompareBar} from "./components/movie/CompareBar/CompareBar.tsx";
 
 function App() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
 
     return (
         <FavoritesProvider>
-            <Router>
-                <div className="app">
-                    <Header onToggleFilters={() => setIsFilterOpen(!isFilterOpen)} />
+            <CompareProvider>
+                <Router>
+                    <div className="app">
+                        <Header onToggleFilters={() => setIsFilterOpen(!isFilterOpen)} />
 
-                    <MovieFilters isOpen={isFilterOpen} onClose={() => setIsFilterOpen(false)} />
+                        <MovieFilters isOpen={isFilterOpen} onClose={() => setIsFilterOpen(false)} />
 
-                    <Routes>
-                        <Route path="/" element={<HomePage/>} />
-                        <Route path="/movie/:id" element={<MoviePage/>} />
-                        <Route path="/favorites" element={<FavoritePage/>}/>
-                        <Route path="/compare" element={<ComparePage/>}/>
-                    </Routes>
-                </div>
-            </Router>
+                        <Routes>
+                            <Route path="/" element={<HomePage/>} />
+                            <Route path="/movie/:id" element={<MoviePage/>} />
+                            <Route path="/favorites" element={<FavoritePage/>}/>
+                            <Route path="/compare" element={<ComparePage/>}/>
+                        </Routes>
+
+                        <CompareBar/>
+                    </div>
+                </Router>
+            </CompareProvider>
         </FavoritesProvider>
     );
 }
