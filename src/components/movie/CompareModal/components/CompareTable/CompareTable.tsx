@@ -47,7 +47,11 @@ export const CompareTable = ({ compareList, removeFromCompare }: CompareTablePro
                 <tr>
                     <td className={styles.stickyCol}>Жанры</td>
                     {compareList.map(movie => (
-                        <td key={movie.id}>Кино</td>
+                        <td key={movie.id} className={styles.genresCell}>
+                            {movie.genres && movie.genres.length > 0
+                                ? movie.genres.map(g => g.genre).join(', ')
+                                : '—'}
+                        </td>
                     ))}
                 </tr>
                 </tbody>

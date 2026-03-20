@@ -4,7 +4,8 @@ export interface Movie {
     poster: { url: string };
     rating: { kp: number | null };
     votes: { kp: number };
-    year: number | null; // добавлено
+    year: number | null;
+    genres?: { genre: string }[];
 }
 
 export interface MovieResponse {

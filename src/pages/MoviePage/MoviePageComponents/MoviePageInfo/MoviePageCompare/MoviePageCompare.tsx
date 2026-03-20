@@ -17,7 +17,8 @@ export const MoviePageCompare = ({ movie }: MoviePageCompareProps) => {
             poster: { url: movie.posterUrl },
             rating: { kp: movie.ratingKinopoisk },
             year: movie.year,
-            votes: { kp: 0 }
+            votes: { kp: 0 },
+            genres: movie.genres,
         };
         addToCompare(movieToCompare);
     };
