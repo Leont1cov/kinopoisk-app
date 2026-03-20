@@ -4,6 +4,9 @@ import { movieService } from '../../api/movieService';
 import type { MovieDetail } from '../../types/types';
 import { Loader } from '../../components/ui/Loader/Loader';
 import styles from './MoviePage.module.css';
+import {MoviePageGroup} from "./MoviePageGroup/MoviePageGroup.tsx";
+import {MoviePagePoster} from "./MoviePageComponents/MoviePagePoster.tsx";
+import {MoviePageInfo} from "./MoviePageComponents/MoviePageInfo/MoviePageInfo.tsx";
 
 export const MoviePage = () => {
     const { id } = useParams<{ id: string }>();
@@ -41,37 +44,20 @@ export const MoviePage = () => {
                 Назад
             </button>
 
-            <div className={styles.content}>
-                <div className={styles.posterSection}>
-                    <img
-                        src={movie.posterUrl}
-                        alt={movie.nameRu || 'Постер'}
-                        className={styles.poster}
+            <MoviePageGroup
+                posterSection={<MoviePagePoster
+                    src={movie.posterUrl} alt={movie.nameRu || 'Постер'}/>}
+                infoSection={
+                    <MoviePageInfo
+                        title={movie.nameRu || movie.nameOriginal || 'Без названия'}
+                        rating={movie.ratingKinopoisk}
+                        year={movie.year}
+                        genres={movie.genres}
+                        description={movie.description}
                     />
-                </div>
+                }
+            />
 
-                <div className={styles.infoSection}>
-                    <h1 className={styles.title}>{movie.nameRu || movie.nameOriginal}</h1>
-
-                    <div className={styles.meta}>
-                        <span className={styles.rating}>
-                            ⭐ {movie.ratingKinopoisk || '—'}
-                        </span>
-                        <span className={styles.year}>{movie.year}г.</span>
-                    </div>
-
-                    <div className={styles.genres}>
-                        {movie.genres.map((g, index) => (
-                            <span key={index} className={styles.genreTag}>{g.genre}</span>
-                        ))}
-                    </div>
-
-                    <div className={styles.description}>
-                        <h3>Описание</h3>
-                        <p>{movie.description || 'Описание отсутствует'}</p>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };

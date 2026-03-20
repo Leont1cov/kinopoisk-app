@@ -1,0 +1,20 @@
+.meta {
+    display: flex;
+    gap: 20px;
+    font-size: 16px;
+    color: var(--text-secondary);
+    align-items: center;
+}
+
+.rating {
+    color: white;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 24px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.year {
+    color: var(--text-secondary);
+}

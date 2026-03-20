@@ -1,5 +1,3 @@
-/* MoviePage.module.css */
-
 .container {
     padding: 20px 40px;
     background-color: var(--bg-primary);
@@ -8,6 +6,18 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    /* Центровка */
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 .center {
@@ -34,79 +44,8 @@
     transform: scale(1.05);
 }
 
-.content {
-    display: flex;
-    gap: 40px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-}
-
-.posterSection {
-    flex: 1 1 300px;
-}
-
-.poster {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: var(--card-hover-shadow);
-    transition: transform 0.3s;
-}
-
-.poster:hover {
-    transform: scale(1.05);
-}
-
-.infoSection {
-    flex: 2 1 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.title {
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.meta {
-    display: flex;
-    gap: 20px;
-    font-size: 16px;
-    color: var(--text-secondary);
-    align-items: center;
-}
-
-.rating {
-    color: var(--rating-green);
-    font-weight: 600;
-}
-
-.year {
-    color: var(--text-secondary);
-}
-
-.genres {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.genreTag {
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-}
-
-.description {
-    margin-top: 20px;
-    line-height: 1.6;
-    color: var(--text-secondary);
-}
-
-.description h3 {
-    margin-bottom: 8px;
-    font-size: 22px;
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 16px;
+    }
 }
