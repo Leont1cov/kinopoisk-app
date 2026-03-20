@@ -16,7 +16,6 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
     const active = isFavorite(movie.id);
 
     return (
-        /* Добавляем обычный класс 'card' для работы :global(.card) в дочерних стилях */
         <Link to={`/movie/${movie.id}`} className={`${styles.card} card`}>
             <FavoriteButton
                 movie={movie}
