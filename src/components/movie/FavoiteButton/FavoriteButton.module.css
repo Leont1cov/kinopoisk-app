@@ -1,37 +1,36 @@
 .favoriteBtn {
-    width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid var(--border-color);
-    background: var(--bg-blur);
-    backdrop-filter: blur(10px);
-    cursor: pointer;
-    transition: all 0.2s ease;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-blur);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .icon {
-    width: 16px;
-    height: 16px;
-    fill: transparent;
-    stroke: var(--text-primary);
-    stroke-width: 2;
-    transition: all 0.2s ease;
+  width: 16px;
+  height: 16px;
+  fill: transparent;
+  stroke: var(--text-primary);
+  stroke-width: 2;
+  transition: all 0.2s ease;
 }
 
-/* ❤️ АКТИВНОЕ СОСТОЯНИЕ (Лайкнуто) */
 .favoriteBtn.active {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: var(--border-color-active);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--border-color-active);
 }
 
 .favoriteBtn.active .icon {
-    fill: #ff4d6d;
-    stroke: #ff4d6d;
+  fill: #ff4d6d;
+  stroke: #ff4d6d;
 }
 
 .favoriteBtn:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
 }

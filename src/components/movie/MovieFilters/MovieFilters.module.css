@@ -1,77 +1,83 @@
 .overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(8px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
 }
-.overlayOpen { opacity: 1; pointer-events: all; }
+.overlayOpen {
+  opacity: 1;
+  pointer-events: all;
+}
 
 .drawer {
-    position: absolute;
-    top: 80px;
-    left: 50%;
-    transform: translateX(-50%) translateY(-20px);
-    width: 100%;
-    max-width: 1200px;
-    background: var(--bg-header);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    box-shadow: var(--card-hover-shadow);
-    backdrop-filter: blur(16px);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.25s ease;
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  width: 100%;
+  max-width: 1200px;
+  background: var(--bg-header);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: var(--card-hover-shadow);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  transition:
+    transform 0.3s ease,
+    opacity 0.25s ease;
 }
 
 .drawerOpen {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
 }
 
-.content { padding: 24px 32px; }
+.content {
+  padding: 24px 32px;
+}
 
 /* Chrome, Safari, Edge */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 /* Firefox */
 input[type="number"] {
-    -moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 @media (max-width: 768px) {
-    .drawer {
-        top: 70px;
-        border-radius: 16px;
-    }
+  .drawer {
+    top: 70px;
+    border-radius: 16px;
+  }
 
-    .content {
-        padding: 20px;
-    }
+  .content {
+    padding: 20px;
+  }
 }
 
 @media (max-width: 480px) {
-    .drawer {
-        top: auto;
-        bottom: 0;
-        left: 0;
-        transform: translateY(100%);
-        width: 100%;
-        max-width: 100%;
-        border-radius: 20px 20px 0 0;
-    }
+  .drawer {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+  }
 
-    .drawerOpen {
-        transform: translateY(0);
-    }
+  .drawerOpen {
+    transform: translateY(0);
+  }
 
-    .content {
-        padding: 18px 16px;
-    }
-
+  .content {
+    padding: 18px 16px;
+  }
 }

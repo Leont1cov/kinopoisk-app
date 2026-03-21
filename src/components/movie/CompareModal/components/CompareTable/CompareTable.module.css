@@ -1,51 +1,56 @@
 .tableWrapper {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 .table {
-    width: 100%;
-    border-collapse: collapse;
-    color: var(--text-primary);
-    text-align: left;
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-primary);
+  text-align: left;
 }
 
-.table th, .table td {
-    padding: 16px 24px;
-    border-bottom: 1px solid var(--border-color);
-    min-width: 200px;
+.table th,
+.table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-color);
+  min-width: 200px;
 }
 
 .table th:not(:last-child),
 .table td:not(:last-child) {
-    border-right: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
 }
 
 .stickyCol {
-    z-index: 10;
-    border-right: 1px solid var(--border-color);
-    min-width: 150px !important;
-    font-weight: 500;
-    color: var(--text-secondary);
+  z-index: 10;
+  border-right: 1px solid var(--border-color);
+  min-width: 150px !important;
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
 .table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .ratingBadge {
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-weight: 500;
-    background: rgba(76, 175, 80, 0.15);
-    color: var(--rating-green);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+  background: rgba(76, 175, 80, 0.15);
+  color: var(--rating-green);
 }
 
 .empty {
-    padding: 40px;
-    text-align: center;
-    color: var(--text-secondary);
+  padding: 40px;
+  text-align: center;
+  color: var(--text-secondary);
 }
 
 @media (max-width: 600px) {
-    .table th, .table td { padding: 12px; min-width: 160px; }
+  .table th,
+  .table td {
+    padding: 12px;
+    min-width: 160px;
+  }
 }

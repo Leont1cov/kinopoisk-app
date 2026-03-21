@@ -1,55 +1,55 @@
 .filterGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .filterGroup label {
-    font-size: 13px;
-    color: var(--text-secondary);
+  font-size: 13px;
+  color: var(--text-secondary);
 }
 
 .filterGroup select {
-    padding: 8px 10px;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    font-size: 14px;
-    outline: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
 }
 
 .filterGroup select:focus {
-    border-color: var(--border-color-active);
+  border-color: var(--border-color-active);
 }
 
 .filterGroup option {
-    color: black;
+  color: black;
 }
 
 .rangeRow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .rangeRow span {
-    color: var(--text-secondary);
+  color: var(--text-secondary);
 }
 
 .rangeRow input {
-    width: 100%;
-    padding: 8px 10px;
+  width: 100%;
+  padding: 8px 10px;
 
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    background: var(--bg-secondary);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
 
-    color: var(--text-primary);
-    font-size: 14px;
-    outline: none;
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
 }
 
 .rangeRow input:focus {
-    border-color: var(--border-color-active);
+  border-color: var(--border-color-active);
 }

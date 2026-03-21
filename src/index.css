@@ -1,46 +1,50 @@
 :root {
-    /* BACKGROUND */
-    --bg-primary: #0f0f0f;
-    --bg-header: rgba(20, 20, 20, 0.7);
-    --bg-secondary: rgba(255, 255, 255, 0.05);
-    --bg-secondary-hover: rgba(255, 255, 255, 0.08);
-    --bg-blur: rgba(255, 255, 255, 0.06);
-    --bg-overlay: rgba(0, 0, 0, 0.4);
+  /* BACKGROUND */
+  --bg-primary: #0f0f0f;
+  --bg-header: rgba(20, 20, 20, 0.7);
+  --bg-secondary: rgba(255, 255, 255, 0.05);
+  --bg-secondary-hover: rgba(255, 255, 255, 0.08);
+  --bg-blur: rgba(255, 255, 255, 0.06);
+  --bg-overlay: rgba(0, 0, 0, 0.4);
 
-    /* TEXT */
-    --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.6);
-    --text-placeholder: rgba(255, 255, 255, 0.4);
-    --text-muted: rgba(255, 255, 255, 0.5);
+  /* TEXT */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-placeholder: rgba(255, 255, 255, 0.4);
+  --text-muted: rgba(255, 255, 255, 0.5);
 
-    /* BORDER */
-    --border-color: rgba(255, 255, 255, 0.1);
-    --border-color-active: rgba(255, 255, 255, 0.3);
-    --card-border-hover: rgba(255, 255, 255, 0.15);
+  /* BORDER */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color-active: rgba(255, 255, 255, 0.3);
+  --card-border-hover: rgba(255, 255, 255, 0.15);
 
-    /* CARD */
-    --card-bg: #1e1e1e;
-    --card-border: rgba(255, 255, 255, 0.08);
-    --card-hover-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  /* CARD */
+  --card-bg: #1e1e1e;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-hover-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
 
-    /* RATING */
-    --rating-green: #4caf50;
-    --rating-orange: #ff9800;
-    --rating-red: #f44336;
+  /* RATING */
+  --rating-green: #4caf50;
+  --rating-orange: #ff9800;
+  --rating-red: #f44336;
 
-    /* ACCENTS */
-    --accent-blue: #3b82f6;
-    --accent-blue-soft: rgba(59, 130, 246, 0.1);
+  /* ACCENTS */
+  --accent-blue: #3b82f6;
+  --accent-blue-soft: rgba(59, 130, 246, 0.1);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: #0f0f0f;
-    color: white;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  background-color: #0f0f0f;
+  color: white;
 }

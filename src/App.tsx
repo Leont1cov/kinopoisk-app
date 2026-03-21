@@ -1,9 +1,7 @@
-import {AppContent} from "./AppContent.tsx";
+import { AppContent } from "./AppContent.tsx";
 
 function App() {
-    return (
-        <AppContent/>
-    );
+  return <AppContent />;
 }
 
 export default App;

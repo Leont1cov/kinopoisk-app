@@ -1,51 +1,53 @@
 .container {
-    padding: 20px 40px;
-    background-color: var(--bg-primary);
-    min-height: 100vh;
-    color: var(--text-primary);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  padding: 20px 40px;
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
-    /* Центровка */
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
+  /* Центровка */
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .content {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    align-items: flex-start;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 }
 
 .backButton {
-    background-color: var(--bg-header);
-    color: var(--text-primary);
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    width: fit-content;
+  background-color: var(--bg-header);
+  color: var(--text-primary);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+  width: fit-content;
 }
 
 .backButton:hover {
-    background-color: var(--bg-secondary-hover);
-    transform: scale(1.05);
+  background-color: var(--bg-secondary-hover);
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 20px 16px;
-    }
+  .container {
+    padding: 20px 16px;
+  }
 }

@@ -1,59 +1,59 @@
 .movieHeader {
-    padding: 16px 24px;
-    min-width: 200px;
-    border-bottom: 1px solid var(--border-color);
-    border-right: 1px solid var(--border-color);
+  padding: 16px 24px;
+  min-width: 200px;
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
 }
 
 .headerContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    position: relative;
-    padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  padding-top: 18px;
 }
 
 .headerContent img {
-    width: 100px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  width: 100px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .movieName {
-    font-size: 0.95rem;
-    text-align: center;
-    display: block;
-    color: var(--text-primary);
+  font-size: 0.95rem;
+  text-align: center;
+  display: block;
+  color: var(--text-primary);
 }
 
 .removeBtn {
-    position: absolute;
-    top: -10px;
-    right: 50%;
-    transform: translateX(50%);
-    padding: 4px 10px;
-    font-size: 11px;
-    font-weight: 500;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    background: var(--bg-blur);
-    backdrop-filter: blur(8px);
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.2s ease;
+  position: absolute;
+  top: -10px;
+  right: 50%;
+  transform: translateX(50%);
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-blur);
+  backdrop-filter: blur(8px);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 @media (hover: hover) {
-    .removeBtn:hover {
-        background: var(--bg-secondary-hover);
-        color: var(--text-primary);
-        border-color: var(--border-color-active);
-    }
+  .removeBtn:hover {
+    background: var(--bg-secondary-hover);
+    color: var(--text-primary);
+    border-color: var(--border-color-active);
+  }
 }
 
 .removeBtn:active {
-    transform: translateX(50%) scale(0.95);
+  transform: translateX(50%) scale(0.95);
 }

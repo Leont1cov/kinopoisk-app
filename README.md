@@ -1,9 +1,11 @@
-# 🎬 Kinopoisk-App 
+# 🎬 Kinopoisk-App
 
 ## Как запустить проект
 
 ### 1. Настройка API ключа
+
 Приложение работает на данных [Kinopoisk Unofficial API](https://kinopoiskapiunofficial.tech). Для корректной работы необходимо получить персональный ключ:
+
 1. Зарегистрируйтесь на сайте [kinopoiskapiunofficial.tech](https://kinopoiskapiunofficial.tech).
 2. Перейдите в свой профиль и скопируйте **API KEY**.
 3. В корне проекта найдите файл `.env.default`.
@@ -11,9 +13,11 @@
 5. **Переименуйте** файл из `.env.default` в `.env` (удалите расширение `.default`).
 
 ### 2. Установка и запуск
+
 Проект поддерживает работу как с Yarn (основной менеджер при разработке), так и с npm:
 
 С использованием yarn:
+
 ```bash
 # Установка всех необходимых пакетов
 yarn install
@@ -24,7 +28,9 @@ yarn dev
 # Создание оптимизированной сборки для продакшена
 yarn build
 ```
+
 С использованием npm:
+
 ```bash
 # Установка зависимостей
 npm install
@@ -35,9 +41,12 @@ npm run dev
 # Сборка проекта
 npm run build
 ```
+
 ## 🔗 Ссылки
-*   **Live Demo**: [https://kinopoisk-app-phi.vercel.app/]
-*   **Репозиторий**: [https://github.com/Leont1cov/kinopoisk-app]
+
+- **Live Demo**: [https://kinopoisk-app-phi.vercel.app/]
+- **Репозиторий**: [https://github.com/Leont1cov/kinopoisk-app]
+
 ## 🚀 Основной функционал
 
 - **Умный поиск и скролл**  
@@ -59,7 +68,7 @@ npm run build
 
 ## 🛠 Технический стек
 
-- **Core:** React 18, TypeScript 
+- **Core:** React 18, TypeScript
 - **Build Tool:** Vite + Yarn
 - **Routing:** React Router v6
 - **State:** React Context API (синхронизация глобального состояния)

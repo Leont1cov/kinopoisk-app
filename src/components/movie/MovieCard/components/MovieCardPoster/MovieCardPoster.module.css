@@ -1,70 +1,70 @@
 .posterWrapper {
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0;
-    display: flex;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
 }
 
 .poster {
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
 :global(.card):hover .poster {
-    transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 .cardFavorite {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 10;
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(0.9);
-    transition: all 0.2s ease;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.9);
+  transition: all 0.2s ease;
 }
 
 /* 🖥 ЛОГИКА ДЛЯ ПК */
 @media (hover: hover) {
-    :global(.card):hover .cardFavorite {
-        opacity: 1;
-        visibility: visible;
-        transform: scale(1);
-    }
+  :global(.card):hover .cardFavorite {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
 }
 
 :global(.active).cardFavorite {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: scale(1) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1) !important;
 }
 
 @media (hover: none) {
-    .cardFavorite {
-        opacity: 1;
-        visibility: visible;
-        transform: scale(1);
-    }
+  .cardFavorite {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
 }
 
 @media (max-width: 1024px) {
-    .posterWrapper {
-        width: 100px;
-        height: 100%;
-    }
+  .posterWrapper {
+    width: 100px;
+    height: 100%;
+  }
 
-    .poster {
-        width: 100px;
-        height: 100%;
-        aspect-ratio: auto;
-    }
+  .poster {
+    width: 100px;
+    height: 100%;
+    aspect-ratio: auto;
+  }
 
-    .cardFavorite {
-        top: 6px;
-        right: 6px;
-    }
+  .cardFavorite {
+    top: 6px;
+    right: 6px;
+  }
 }
